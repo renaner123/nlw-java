@@ -1,9 +1,11 @@
+version: '3.8'
+
 services:
   mysql:
     image: mysql:8.3
+    container_name: mysql-nlw
     environment:
       MYSQL_ROOT_PASSWORD: root
-      container_name: mysql-nlw
       MYSQL_DATABASE: mydb
       MYSQL_USER: user
       MYSQL_PASSWORD: password
@@ -11,6 +13,10 @@ services:
       - "3306:3306"
     networks:
       - my-network
+    volumes:
+      - mysql_data:/var/lib/mysql
 networks:
-    my-network:
-        driver: bridge
+  my-network:
+    driver: bridge
+volumes:
+  mysql_data:
