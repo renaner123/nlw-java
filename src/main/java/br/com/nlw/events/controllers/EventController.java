@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class EventController {
@@ -28,7 +29,7 @@ public class EventController {
     public ResponseEntity<Event> getByPrettyName(@PathVariable String prettyName) {
         Event event = eventService.getByPrettyName(prettyName);
 
-        if (event == null) {
+        if (Objects.isNull(event)) {
             return ResponseEntity.notFound().build();
         }
 
